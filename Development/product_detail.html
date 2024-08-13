@@ -1,0 +1,124 @@
+<!doctype html>
+<html class="no-js" lang="">
+<head>
+  <meta charset="utf-8">
+  <title></title>
+  <link rel="stylesheet" href="css/main.css">
+</head>
+<!-- body start -->
+<body>
+<section class="navbar-section">
+  <!-- Navigation bar -->
+  <nav class="navbar">
+    <!-- logo -->
+    <a href="index.html"> <img alt="logo" src="img/pramit-store-logo.png" class="navbar-logo"></a>
+    <!-- unordered list -->
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="products.html">Products</a></li>
+      <li><a href="Blog.html">Blog</a></li>
+      <li><a href="research.html">Research</a></li>
+      <li><a href="contact_us.html">Contact Us</a></li>
+    </ul>
+  </nav>
+</section>
+<section>
+  <div class="section-container">
+    <!-- displays the content in inline and gives spacing with background color -->
+    <div class="product-detail-container"
+         style="display: flex; margin-top: 30px; margin-bottom: 30px; background-color: #FFFFFF; padding: 10px">
+         <!-- gives width to the div -->
+      <div style="width: 60%">
+        <img style="width: 100%;" id="product-image" src="" alt="product-image">
+      </div>
+      <!-- gives width and spacing -->
+      <div style="width: 40%; padding: 20px;">
+        <!-- gives spacing in bottom -->
+        <h2 id="product-title" style="margin-bottom: 20px"></h2>
+        <!-- sets the font size and color of the text -->
+        <p id="product-price" style="font-size: 24px; color: #f57224"></p>
+        <ul id="product-spec" style="margin-top: 30px;">
+        </ul>
+        <!-- gives an pop up alert message when clicked -->
+        <button onclick="alert('This product has been added to your cart')"
+                style="margin-top: 30px; padding: 20px; width: 200px; background-color: #f57224; border-width: 0; color: #FFFFFF; font-size: 18px;">
+          Add To Cart
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- creating a section for the footer -->
+<section class="footer-dark">
+  <!-- footer of the website -->
+  <footer>
+    <div class="container">
+      <div class="row">
+        <div class="footer-column">
+          <h3>Information</h3>
+          <ul>
+            <li><a href="https://www.hubspot.com/our-story?hubs_post=blog.hubspot.com/marketing/remarkable-about-us-page-examples&hubs_post-cta=redirect-link&_ga=2.209750805.1485796926.1653973165-1137618323.1653814434">About Us</a></li>
+            <li><a href="contact_us.html">Contact Us</a></li>
+            <li><a href="contact_us.html">Orders and Returns</a></li>
+            <li><a href="https://www.surveymonkey.com/mp/legal/terms-of-use/">Terms and Conditions</a></li>
+            <li><a href="https://bedtimediffuser.com/pages/privacy-policy?gclid=Cj0KCQjw1tGUBhDXARIsAIJx01nv5s6byuDJl6gA_PA3EFzd3YOdSpURv6NMcFFWuMA2vPXTrdPlBxoaAoulEALw_wcB">Privacy Policy</a></li>
+            <li><a href="#">Privacy Policy</a></li>
+          </ul>
+        </div>
+        <div class="footer-column">
+          <h3>Branches</h3>
+          <ul>
+            <li><a href="https://www.samsung.com/us/">Samsung</a></li>
+            <li><a href="https://www.apple.com/">iPhone</a></li>
+            <li><a href="https://www.oneplus.com/np">OnePlus</a></li>
+            <li><a href="https://www.mi.com/global/">Redmi</a></li>
+            <li><a href="https://www.oppo.com/en/">Oppo</a></li>
+          </ul>
+        </div>
+        <div class="footer-column">
+          <h3>Mobile Store</h3>
+          <p>This Mobile Store brings the mobile shopping experience online by providing mobile phones from all
+            major brands right at your fingertips. </p>
+        </div>
+      </div>
+      <div class="flex-center mt-2">
+        <p class="copyright">Mobile Store © 2022 All Rights Reserved</p>
+      </div>
+    </div>
+  </footer>
+</section>
+<script src="js/main.js"></script>
+<script>
+    //getElementById returns the element with id "product title"
+    const productTitle = document.getElementById("product-title")
+    const productImage = document.getElementById("product-image")
+    const productSpec = document.getElementById("product-spec")
+    const productPrice = document.getElementById("product-price")
+
+    //getItem returns the item from the local storage with key="product-id" and key's value=1
+    const currentId = localStorage.getItem("product-id")
+    //finds product in products array by currentId
+    const currentProduct = products.find( function (product) {
+        return product.id === parseInt(currentId)
+    })
+
+    // returns the element of product title with product name 
+    productTitle.innerHTML = currentProduct.name
+    //sets the attribue of product image
+    productImage.setAttribute("src", currentProduct.image)
+    
+    // declares spec in currentProduct
+    for (let spec in currentProduct.specification) {
+        // creates li tag 
+        const specItem = document.createElement("li")
+        //<li></li>
+        //returns the elements of specItems with $ for conversion
+        specItem.innerHTML = `${spec}: ${currentProduct.specification[spec]}`
+        productSpec.append(specItem)
+    }
+    
+    // returns the product price with Rs at the beginning and converts the currentProduct's price to String which also allows to add a comma in between the value of price 
+    productPrice.innerHTML = "Rs. " + currentProduct.price.toLocaleString()
+</script>
+</body>
+</html>

@@ -1,0 +1,148 @@
+<!doctype html>
+<html class="no-js" lang="">
+<head>
+  <meta charset="utf-8">
+  <title></title>
+  <link rel="stylesheet" href="css/main.css">
+</head>
+<!-- body start -->
+<body>
+<section class="navbar-section">
+  <!-- Navigation Bar -->
+  <nav class="navbar">
+    <!-- logo -->
+    <a href="index.html"><img alt="logo" src="img/pramit-store-logo.png" class="navbar-logo"></a>
+    <!-- unordered list -->
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li class="active"><a href="products.html">Products</a></li>
+      <li><a href="Blog.html">Blog</a></li>
+      <li><a href="research.html">Research</a></li>
+      <li><a href="contact_us.html">Contact Us</a></li>
+    </ul>
+  </nav>
+</section>
+<section>
+  <div class="section-container">
+    <div class="section-header">
+      <h2>
+        Products
+      </h2>
+      <!-- sort by button with 4 different options -->
+      <div class="product-sort">
+        <label for="sort-product-dropdown">Sort By</label>
+        <select id="sort-product-dropdown">
+          <option value="0">Default</option>
+          <option value="1">Price High to Low</option>
+          <option value="2">Price Low to High</option>
+          <option value="3">Name</option>
+        </select>
+      </div>
+
+    </div>
+    <div class="section-body">
+      <div id="products">
+
+      </div>
+    </div>
+  </div>
+</section>
+<!-- Footer -->
+<section class="footer-dark">
+  <footer>
+    <div class="container">
+      <div class="row">
+        <div class="footer-column">
+          <h3>Information</h3>
+          <ul>
+            <li><a href="https://www.hubspot.com/our-story?hubs_post=blog.hubspot.com/marketing/remarkable-about-us-page-examples&hubs_post-cta=redirect-link&_ga=2.209750805.1485796926.1653973165-1137618323.1653814434">About Us</a></li>
+            <li><a href="contact_us.html">Contact Us</a></li>
+            <li><a href="contact_us.html">Orders and Returns</a></li>
+            <li><a href="https://www.surveymonkey.com/mp/legal/terms-of-use/">Terms and Conditions</a></li>
+            <li><a href="https://bedtimediffuser.com/pages/privacy-policy?gclid=Cj0KCQjw1tGUBhDXARIsAIJx01nv5s6byuDJl6gA_PA3EFzd3YOdSpURv6NMcFFWuMA2vPXTrdPlBxoaAoulEALw_wcB">Privacy Policy</a></li>
+          </ul>
+        </div>
+        <div class="footer-column">
+          <h3>Branches</h3>
+          <ul>
+            <li><a href="https://www.samsung.com/us/">Samsung</a></li>
+            <li><a href="https://www.apple.com/">iPhone</a></li>
+            <li><a href="https://www.oneplus.com/np">OnePlus</a></li>
+            <li><a href="https://www.mi.com/global/">Redmi</a></li>
+            <li><a href="https://www.oppo.com/en/">Oppo</a></li>
+          </ul>
+        </div>
+        <div class="footer-column">
+          <h3>Mobile Store</h3>
+          <p>This Mobile Store brings the mobile shopping experience online by providing mobile phones from all
+            major brands right at your fingertips. </p>
+        </div>
+      </div>
+      <div class="flex-center mt-2">
+        <p class="copyright">Mobile Store © 2022 All Rights Reserved</p>
+      </div>
+    </div>
+  </footer>
+</section>
+<script src="js/main.js"></script>
+<script>
+    // returns the element with id "products"
+    const productsDiv = document.getElementById("products")
+
+    // returns the element with id "sort product dropdown"
+    const sortProductDropdown = document.getElementById("sort-product-dropdown")
+    //add a change event to sortProductDropdown
+    sortProductDropdown.addEventListener('change', function () {
+        const sortValue = sortProductDropdown.value
+        //sortvalue when 0
+        if (sortValue === "0") {
+            //log() method writes () a message to the console for testing purposes
+            console.log(products)
+            //sorts the products as what is in default
+            products.sort(function (a, b) {
+                if (a.id > b.id) return 1;
+                if (a.id < b.id) return -1;
+                return 0;
+            })
+        //sortvalue when 1
+        } else if (sortValue === "1") {
+            //log() method writes () a message to the console for test purposes
+            console.log(products)
+            //sorts the products from highest price to lowest price
+            products.sort(function (a, b) {
+                if (a.price > b.price) return -1;
+                if (a.price < b.price) return 1;
+                return 0;
+            })
+        //sortvalue when 2
+        } else if (sortValue === "2") {
+            //sorts the products from lowest price to highest price
+            products.sort(function (a, b) {
+                if (a.price > b.price) return 1;
+                if (a.price < b.price) return -1;
+                return 0;
+            })
+        //sortvalue when 3
+        } else if (sortValue === "3") {
+            //sorts the products aphabetically
+            products.sort(function (a, b) {
+                if (a.name > b.name) return 1;
+                if (a.name < b.name) return -1;
+                return 0;
+            })
+        }
+        //returns the elements of productsDiv
+        productsDiv.innerHTML = ""
+        for (let product of products) {
+            const productCard = objectToCard(product)
+            productsDiv.append(productCard)
+        }
+    })
+    for (let product of products) {
+        const productCard = objectToCard(product)
+        productsDiv.append(productCard)
+    }
+
+</script>
+</body>
+</html>
